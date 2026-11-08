@@ -1,0 +1,11 @@
+# Variáveis de ambiente
+.env
+.env.local
+
+# Ambientes virtuais e dependências
+venv/
+node_modules/
+__pycache__/
+
+# Arquivos de dados pesados
+*.csv
