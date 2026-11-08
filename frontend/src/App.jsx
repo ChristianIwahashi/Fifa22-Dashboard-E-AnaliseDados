@@ -65,7 +65,7 @@ export default function App() {
               </span>
             </div>
             <h1 className="text-3xl font-black tracking-tight text-slate-900 mt-2">
-              Painel Analítico de Jogadores
+              Análise de Dados de Jogadores
             </h1>
             <p className="text-slate-600 text-sm mt-0.5">
               Visualização analítica e métricas de mercado em tempo real
