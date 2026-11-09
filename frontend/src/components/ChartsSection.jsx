@@ -178,7 +178,7 @@ export default function ChartsSection({ jogadores = [] }) {
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-      {/* Gráfico 1: Barras Horizontais */}
+      {/*Gráfico 1: Barras Horizontais*/}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm lg:col-span-2">
         <h3 className="text-base font-bold text-slate-900 mb-1">
           1. Top 10 Clubes com Maior Patrimônio de Elenco
@@ -202,16 +202,25 @@ export default function ChartsSection({ jogadores = [] }) {
             options={{
               ...opcoesTemaClaro,
               indexAxis: "y",
-              plugins: { legend: { display: false } },
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      return ` Patrimônio: € ${context.raw} M`;
+                    },
+                  },
+                },
+              },
             }}
           />
         </div>
       </div>
 
-      {/* Gráfico 2: Rosca */}
+      {/*Gráfico 2: Rosca*/}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-base font-bold text-slate-900 mb-1">
-          2. Distribuição Tática por Posição em Campo
+          2. Distribuição por Posição
         </h3>
         <p className="text-xs text-slate-500 mb-6">
           Volume de atletas nas principais posições
@@ -240,13 +249,23 @@ export default function ChartsSection({ jogadores = [] }) {
             options={{
               responsive: true,
               maintainAspectRatio: false,
-              plugins: { legend: { position: "right", labels: { color: "#475569" } } },
+              plugins: {
+                legend: { position: "right", labels: { color: "#475569" } },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      const quantidade = context.raw;
+                      return `${quantidade} jogadores`;
+                    },
+                  },
+                },
+              },
             }}
           />
         </div>
       </div>
 
-      {/* Gráfico 3: Linha com Área */}
+      {/*Gráfico 3: Linha com Área*/}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-base font-bold text-slate-900 mb-1">
           3. Curva de Valorização por Idade
@@ -270,18 +289,31 @@ export default function ChartsSection({ jogadores = [] }) {
                 },
               ],
             }}
-            options={opcoesTemaClaro}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { position: "top", labels: { color: "#475569" } },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      return ` Valor Médio: € ${context.raw} M`;
+                    },
+                  },
+                },
+              },
+            }}
           />
         </div>
       </div>
 
-      {/* Gráfico 4: Barras Verticais */}
+      {/*Gráfico 4: Barras Verticais*/}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-base font-bold text-slate-900 mb-1">
           4. Distribuição por Faixa de Overall
         </h3>
         <p className="text-xs text-slate-500 mb-6">
-          Quantidade de atletas por segmento de nível técnico
+          Quantidade de atletas por segmento de overall
         </p>
         <div className="h-72">
           <Bar
@@ -298,19 +330,29 @@ export default function ChartsSection({ jogadores = [] }) {
             }}
             options={{
               ...opcoesTemaClaro,
-              plugins: { legend: { display: false } },
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      const quantidade = context.raw;
+                      return `${quantidade} jogadores`;
+                    },
+                  },
+                },
+              },
             }}
           />
         </div>
       </div>
 
-      {/* Gráfico 5: Pizza */}
+      {/*Gráfico 5: Pizza*/}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-base font-bold text-slate-900 mb-1">
           5. Top 5 Nacionalidades com Maior Presença
         </h3>
         <p className="text-xs text-slate-500 mb-6">
-          Países com mais atletas de alto nível no recorte atual
+          Países com mais atletas de alto nível
         </p>
         <div className="h-72 flex items-center justify-center">
           <Pie
@@ -328,16 +370,26 @@ export default function ChartsSection({ jogadores = [] }) {
             options={{
               responsive: true,
               maintainAspectRatio: false,
-              plugins: { legend: { position: "right", labels: { color: "#475569" } } },
+              plugins: {
+                legend: { position: "right", labels: { color: "#475569" } },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      const quantidade = context.raw;
+                      return `${quantidade} jogadores`;
+                    },
+                  },
+                },
+              },
             }}
           />
         </div>
       </div>
 
-      {/* Gráfico 6: Radar */}
+      {/*Gráfico 6: Radar*/}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-base font-bold text-slate-900 mb-1">
-          6. Comparativo Técnico por Setor (Overall Médio)
+          6. Comparativo de Overall por Setor
         </h3>
         <p className="text-xs text-slate-500 mb-6">
           Qualidade média de 0 a 99 em cada setor do campo
@@ -373,7 +425,7 @@ export default function ChartsSection({ jogadores = [] }) {
         </div>
       </div>
 
-      {/* Gráfico 7: Polar Area */}
+      {/*Gráfico 7: Polar Area*/}
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <h3 className="text-base font-bold text-slate-900 mb-1">
           7. Top Ligas por Valor Médio de Transferência
@@ -410,7 +462,16 @@ export default function ChartsSection({ jogadores = [] }) {
                   ticks: { display: false },
                 },
               },
-              plugins: { legend: { position: "right", labels: { color: "#475569" } } },
+              plugins: { 
+                legend: { position: "right", labels: { color: "#475569" } },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      return ` Valor Médio: € ${context.raw} M`;
+                    },
+                  },
+                },
+              },
             }}
           />
         </div>

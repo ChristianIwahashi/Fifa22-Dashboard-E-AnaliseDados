@@ -70,7 +70,7 @@ export default function KpiCards({ jogadores = [], totalBase = 0 }) {
 
       <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
         <span className="text-xs uppercase tracking-wider text-slate-500 font-bold">
-          Nível Técnico (Overall Médio)
+          Nível Técnico (Overall)
         </span>
         <div className="flex items-baseline justify-between mt-2">
           <p className="text-3xl font-black text-amber-600">
